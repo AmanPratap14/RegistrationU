@@ -31,8 +31,11 @@ app.get('/resume', async function(req, res) {
 
 app.post('/resume', upload.single('resume'), async function (req, res) {
    const {firstName, lastName, country, dob} = req.body;
-   const resume = req.file.filename;
-   
+    try {
+   var resume = req.file.filename;
+    catch (e) {
+       console.log("error while reading file");
+    }   
    try{
       await connection.query(`insert into onboarding_data (firstName, lastName, country, resume, dob) values (?,?,?,?,?)`, [firstName, lastName, country, resume, dob])
       return res.send({message: "Successfully inserted data"})
