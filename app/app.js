@@ -33,7 +33,7 @@ app.post('/resume', upload.single('resume'), async function (req, res) {
    const {firstName, lastName, country, dob} = req.body;
     try {
    var resume = req.file.filename;
-    catch (e) {
+    } catch (e) {
        console.log("error while reading file");
     }   
    try{
