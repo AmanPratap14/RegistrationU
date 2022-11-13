@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
 app.get('/resume', async function(req, res) {
     
         connection.query("select firstName, lastName, userId, country, resume, dob from onboarding_data", function (err, rows) {
+          connection.query("select firstName, lastName, userId, country, resume, dob from onboarding_data", function (err, rows) {
             if(err) {
 
                 res.send({message: "Error while fetching resumes", err});
@@ -41,7 +42,7 @@ app.post('/resume', upload.single('resume'), async function (req, res) {
   }
 });
 
-var server = app.listen(8081, function () {
+var server = app.listen(process.env.PORT || 8081, function () {
    var host = server.address().address
    var port = server.address().port
    
