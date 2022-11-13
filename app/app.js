@@ -20,7 +20,6 @@ const storage = multer.diskStorage({
 app.get('/resume', async function(req, res) {
     
         connection.query("select firstName, lastName, userId, country, resume, dob from onboarding_data", function (err, rows) {
-          connection.query("select firstName, lastName, userId, country, resume, dob from onboarding_data", function (err, rows) {
             if(err) {
 
                 res.send({message: "Error while fetching resumes", err});
